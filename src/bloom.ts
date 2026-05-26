@@ -68,4 +68,67 @@ export class Filter {
   get k(): number {
     return this._k
   }
+
+  /**
+   * Construct a cache-line-blocked filter (Putze-Sanders-Singler 2007).
+   * A primary hash picks one 512-bit block; all k probes live inside
+   * that block. Same add/test signatures as the flat constructor.
+   *
+   * Stage 4: implement this.
+   */
+  static blocked(m: number, k: number): Filter {
+    // TODO(stage4): build a blocked-layout filter.
+    void m
+    void k
+    throw new Error("not implemented")
+  }
+
+  /**
+   * (m, k) that minimize the false-positive rate for n keys at target
+   * rate p. Closed-form:
+   *   m = ceil(-n * ln(p) / (ln 2)^2)
+   *   k = round((m / n) * ln 2)
+   *
+   * Stage 3: implement this.
+   */
+  static optimalSize(n: number, p: number): { m: number; k: number } {
+    // TODO(stage3).
+    void n
+    void p
+    return { m: 0, k: 0 }
+  }
+
+  /**
+   * Serialize the filter's state (m, k, bit array) to bytes. Use a
+   * fixed little-endian format so two implementations produce byte-equal
+   * output for the same state.
+   *
+   * Stage 6: implement this.
+   */
+  toBytes(): Uint8Array {
+    // TODO(stage6).
+    throw new Error("not implemented")
+  }
+
+  /**
+   * Reverse toBytes.
+   *
+   * Stage 6: implement this.
+   */
+  static fromBytes(data: Uint8Array): Filter {
+    // TODO(stage6).
+    void data
+    throw new Error("not implemented")
+  }
+
+  /**
+   * Fraction of bits currently set in the bit array. Theoretical:
+   * 1 - exp(-k * n / m).
+   *
+   * Stage 6: implement this.
+   */
+  saturation(): number {
+    // TODO(stage6).
+    return 0
+  }
 }
