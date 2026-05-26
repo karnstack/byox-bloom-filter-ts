@@ -34,3 +34,7 @@ pnpm vitest run --reporter=verbose -t "^$stage"
 [tasks.all]
 description = "Run tests for every stage."
 run = "pnpm vitest run --reporter=verbose"
+
+[tasks.sync]
+description = "Pull canonical files from the karnstack template."
+run = "bash .karnstack/sync.sh"
